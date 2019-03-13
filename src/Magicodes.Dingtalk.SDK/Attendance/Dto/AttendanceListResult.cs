@@ -23,8 +23,15 @@ namespace Magicodes.Dingtalk.SDK.Attendance.Dto
     /// <summary>
     ///     打卡详情结果
     /// </summary>
-    public class ListResult : ApiResultBase
+    public class AttendanceListResult : ApiResultBase
     {
-        [JsonProperty("recordresult")] public List<RecordDetailResult> RecordResult { get; set; }
+        [JsonProperty("recordresult")]
+        public List<RecordDetailResult> RecordResult { get; set; }
+
+        /// <summary>
+        /// 分页返回参数，表示是否还有更多数据
+        /// </summary>
+        [JsonProperty("hasMore")]
+        public bool HasMore { get; set; }
     }
 }

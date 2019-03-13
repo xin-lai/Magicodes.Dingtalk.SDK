@@ -79,10 +79,10 @@ namespace Magicodes.Dingtalk.SDK.Attendance
         /// <param name="limit"></param>
         /// <param name="isI18n"></param>
         /// <returns></returns>
-        public async Task<ListResult> List(List<string> userIds, DateTime workDateFrom, DateTime workDateTo,
+        public async Task<AttendanceListResult> List(List<string> userIds, DateTime workDateFrom, DateTime workDateTo,
             int offset = 0, int limit = 50, bool isI18n = false)
         {
-            return await Post<ListResult>(
+            return await Post<AttendanceListResult>(
                 "attendance/list?access_token={ACCESS_TOKEN}", new
                 {
                     userIdList = userIds,
