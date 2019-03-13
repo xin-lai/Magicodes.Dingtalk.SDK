@@ -38,7 +38,7 @@ namespace Magicodes.Dingtalk.SDK.Daily.Dto
         ///     下一游标
         /// </summary>
         [JsonProperty("next_cursor")]
-        public string NextCursor { get; set; }
+        public int NextCursor { get; set; }
 
         /// <summary>
         ///     是否还有下一页
