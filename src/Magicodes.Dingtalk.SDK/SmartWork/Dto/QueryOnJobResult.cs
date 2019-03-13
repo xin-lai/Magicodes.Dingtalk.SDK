@@ -27,12 +27,6 @@ namespace Magicodes.Dingtalk.SDK.SmartWork.Dto
     public class QueryOnJobResult: ApiResultBase
     {
         /// <summary>
-        ///     下一次分页调用的offset值，当返回结果里没有nextCursor时，表示分页结束
-        /// </summary>
-        [JsonProperty("next_cursor")]
-        public int? NextCursor { get; set; }
-
-        /// <summary>
         /// 分页结果
         /// </summary>
         [JsonProperty("result")]
@@ -49,6 +43,12 @@ namespace Magicodes.Dingtalk.SDK.SmartWork.Dto
         /// </summary>
         public class Result
         {
+            /// <summary>
+            ///     下一次分页调用的offset值，当返回结果里没有nextCursor时，表示分页结束
+            /// </summary>
+            [JsonProperty("next_cursor")]
+            public int? NextCursor { get; set; }
+
             /// <summary>
             ///     员工userid列表
             /// </summary>
