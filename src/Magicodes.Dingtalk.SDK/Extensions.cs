@@ -15,6 +15,7 @@
 //   
 // ======================================================================
 
+using RestSharp;
 using System;
 
 namespace Magicodes.Dingtalk.SDK
@@ -44,6 +45,19 @@ namespace Magicodes.Dingtalk.SDK
 
             if (source.IndexOf(oldString, comp) != -1) source = Replace(source, oldString, newString, comp);
             return source;
+        }
+
+        /// <summary>
+        /// 如果不成功则抛出异常
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        public static void ThrowExceptionIfNotSuccess<T>(T data) where T : ApiResultBase, new()
+        {
+            if (data != null && !data.IsSuccess())
+            {
+                throw new DingtalkApiException(data.ErrorCode, data.ErrorMessage);
+            }
         }
     }
 }

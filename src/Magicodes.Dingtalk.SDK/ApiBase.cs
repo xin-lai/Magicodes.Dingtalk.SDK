@@ -92,23 +92,7 @@ namespace Magicodes.Dingtalk.SDK
             var response = await client.ExecuteTaskAsync(request);
             _logger.LogDebug($"{response.StatusCode} {response.Content}");
             var data = JsonConvert.DeserializeObject<T>(response.Content);
-            ThrowExceptionIfNotSuccess(response, data);
             return data;
-        }
-
-        private void ThrowExceptionIfNotSuccess<T>(IRestResponse response, T data) where T : ApiResultBase, new()
-        {
-            if (data != null && !data.IsSuccess())
-            {
-                _logger.LogError($"{data.ErrorCode} {data?.ErrorMessage}");
-                throw new DingtalkApiException(data.ErrorCode, data.ErrorMessage);
-            }
-
-            if (!response.IsSuccessful)
-            {
-                _logger.LogError($"{response.StatusCode} {response.Content}");
-                throw new DingtalkApiException(response.Content);
-            }
         }
     }
 }
