@@ -16,6 +16,7 @@
 // ======================================================================
 
 using Newtonsoft.Json;
+using System;
 
 namespace Magicodes.Dingtalk.SDK.Attendance.Dto
 {
@@ -64,7 +65,7 @@ namespace Magicodes.Dingtalk.SDK.Attendance.Dto
         ///     打卡时间
         /// </summary>
         [JsonProperty("plan_check_time")]
-        public string PlanCheckTime { get; set; }
+        public DateTime? PlanCheckTime { get; set; }
 
         /// <summary>
         ///     考勤组id
