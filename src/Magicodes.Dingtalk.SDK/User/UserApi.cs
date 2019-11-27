@@ -46,9 +46,9 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <returns></returns>
         public async Task<ApiResultBase> Create(CreateOrEditUsersInput input)
         {
-            // TODO:判断员工id，手机号码，分机号，邮箱 ，是否重复
+            // 把入职时间转换为时间戳
             return await Post<ApiResultBase>(
-               "user/create?access_token=ACCESS_TOKEN", new
+               "user/create?access_token={ACCESS_TOKEN}", new
                {
                    userid = input.UserId,
                    name = input.Name,
@@ -77,7 +77,7 @@ namespace Magicodes.Dingtalk.SDK.User
         {
             // TODO:判断员工id，手机号码，分机号，邮箱 ，是否重复
             return await Post<ApiResultBase>(
-               "user/update?access_token=ACCESS_TOKEN", new
+               "user/update?access_token={ACCESS_TOKEN}", new
                {
                    userid = input.UserId,
                    name = input.Name,
@@ -103,7 +103,7 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <returns></returns>
         public async Task<ApiResultBase> Delete(string userid)
         {
-            return await Get<ApiResultBase>("user/delete?access_token=ACCESS_TOKEN&userid=" + userid);
+            return await Get<ApiResultBase>("user/delete?access_token={ACCESS_TOKEN}&userid=" + userid);
         }
     }
 }

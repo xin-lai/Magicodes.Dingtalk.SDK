@@ -34,9 +34,9 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         [StringLength(64, MinimumLength = 1)]
         [JsonProperty("userid")]
         public string UserId { get; set; }
-        
+
         /// <summary>
-        ///员工名称
+        /// 员工名称
         /// </summary>
         [StringLength(64, MinimumLength = 1)]
         [JsonProperty("name")]
@@ -72,7 +72,7 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         /// </summary>
         [StringLength(50, MinimumLength = 0)]
         [JsonProperty("tel")]
-        public string    Tel { get; set; }
+        public string Tel { get; set; }
 
         /// <summary>
         /// 办公地点
@@ -127,5 +127,16 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         /// </summary>
         [JsonProperty("extattr")]
         public JsonObject Extattr { get; set; }
+
+        /// <summary>
+        /// 入职时间
+        /// </summary>
+        [JsonProperty("hiredDate")]
+        public DateTime? HiredDateTime { get; set; }
+
+        /// <summary>
+        /// 入职时间 时间戳
+        /// </summary>
+        public long? HiredDate { get; set; }
     }
 }

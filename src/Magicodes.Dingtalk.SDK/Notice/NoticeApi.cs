@@ -40,7 +40,7 @@ namespace Magicodes.Dingtalk.SDK.Notice
         public async Task<NoticeJobResult> JobNotice(int agentId, string useridList, MsgHelper msg)
         {
             return await Post<NoticeJobResult>(
-                "topapi/message/corpconversation/asyncsend_v2?access_token=ACCESS_TOKEN", new
+                "topapi/message/corpconversation/asyncsend_v2?access_token={ACCESS_TOKEN}", new
                 {
                     agentId,
                     useridList,
