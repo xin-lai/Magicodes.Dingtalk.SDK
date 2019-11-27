@@ -1,50 +1,25 @@
-﻿// ======================================================================
-//   
-//           Copyright (C) 2019-2020 湖南心莱信息科技有限公司    
-//           All rights reserved
-//   
-//           filename : DailyApiResult.cs
-//           description :
-//   
-//           created by 雪雁 at  2019-03-13 10:03
-//           Mail: wenqiang.li@xin-lai.com
-//           QQ群：85318032（技术交流）
-//           Blog：http://www.cnblogs.com/codelove/
-//           GitHub：https://github.com/xin-lai
-//           Home：http://xin-lai.com
-//   
-// ======================================================================
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SimpleJson;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Magicodes.Dingtalk.SDK.User.Dto
 {
     /// <summary>
-    /// 创建或修改员工
+    /// 获取用户详情返回结果
     /// </summary>
-    public class CreateOrEditUsersInput
+    public class GetUserDetailsResult : ApiResultBase
     {
-        /// <summary>
-        /// 接口凭证 
-        /// </summary>
-        [JsonProperty("access_token")]
-        public string Access_Token { get; set; }
-
         /// <summary>
         /// 员工id
         /// </summary>
-        [StringLength(64, MinimumLength = 1)]
         [JsonProperty("userid")]
         public string UserId { get; set; }
 
         /// <summary>
         /// 员工名称
         /// </summary>
-        [StringLength(64, MinimumLength = 1)]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -63,7 +38,6 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         /// <summary>
         /// 职位
         /// </summary>
-        [StringLength(64, MinimumLength = 0)]
         [JsonProperty("position")]
         public string Position { get; set; }
 
@@ -76,43 +50,36 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         /// <summary>
         /// 分机号
         /// </summary>
-        [StringLength(50, MinimumLength = 0)]
         [JsonProperty("tel")]
         public string Tel { get; set; }
 
         /// <summary>
         /// 办公地点
         /// </summary>
-        [StringLength(50, MinimumLength = 0)]
         [JsonProperty("workPlace")]
         public string WorkPlace { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        [StringLength(1000, MinimumLength = 0)]
         [JsonProperty("remark")]
         public string Remark { get; set; }
 
         /// <summary>
         /// 邮箱
         /// </summary>
-        [StringLength(64, MinimumLength = 0)]
-        [RegularExpression(@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$")]
         [JsonProperty("email")]
         public string Email { get; set; }
 
         /// <summary>
         /// 员工的企业邮箱
         /// </summary>
-        [RegularExpression(@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$")]
         [JsonProperty("orgEmail")]
         public String OrgEmail { get; set; }
 
         /// <summary>
         /// 员工工号
         /// </summary>
-        [StringLength(64, MinimumLength = 0)]
         [JsonProperty("jobnumber")]
         public string Jobnumber { get; set; }
 
@@ -144,5 +111,77 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         /// 入职时间 时间戳
         /// </summary>
         public long? HiredDate { get; set; }
+
+        /// <summary>
+        /// 员工在当前开发者企业账号范围内的唯一标识，系统生成，固定值，不会改变
+        /// </summary>
+        [JsonProperty("unionid")]
+        public string UnionId { get; set; }
+
+        /// <summary>
+        /// 是否已经激活，true表示已激活，false表示未激活
+        /// </summary>
+        [JsonProperty("active")]
+        public bool Active { get; set; }
+
+        /// <summary>
+        /// 是否已经激活，true表示已激活，false表示未激活
+        /// </summary>
+        [JsonProperty("isAdmin")]
+        public bool IsAdmin { get; set; }
+
+        /// <summary>
+        /// 是否为企业的老板，true表示是，false表示不是
+        /// </summary>
+        [JsonProperty("isBoss")]
+        public bool IsBoss { get; set; }
+
+        /// <summary>
+        /// 在对应的部门中是否为主管：Map结构的json字符串，key是部门的Id，value是人员在这个部门中是否为主管，true表示是，false表示不是
+        /// </summary>
+        [JsonProperty("isLeaderInDepts")]
+        public string IsLeaderInDepts { get; set; }
+
+        /// <summary>
+        /// 头像url
+        /// </summary>
+        [JsonProperty("avatar")]
+        public string Avatar { get; set; }
+
+        /// <summary>
+        /// 国家地区码
+        /// </summary>
+        [JsonProperty("stateCode")]
+        public string StateCode { get; set; }
+
+        /// <summary>
+        /// 用户所在角色列表
+        /// </summary>
+        [JsonProperty("roles")]
+        public Role Roles { get; set; }
+    }
+
+    /// <summary>
+    /// 角色列表
+    /// </summary>
+    public class Role
+    {
+        /// <summary>
+        /// 角色id
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 角色名称
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 角色组名称
+        /// </summary>
+        [JsonProperty("groupName")]
+        public string GroupName { get; set; }
     }
 }
