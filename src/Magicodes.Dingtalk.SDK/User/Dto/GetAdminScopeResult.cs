@@ -6,14 +6,14 @@ using System.Text;
 namespace Magicodes.Dingtalk.SDK.User.Dto
 {
     /// <summary>
-    /// 获取部分用户userid列表
+    /// 获取管理员通讯录权限范围返回结果
     /// </summary>
-    public class GetDeptMemberUserIdsInput
+    public class GetAdminScopeResult : ApiResultBase
     {
         /// <summary>
-        /// 部门id
+        /// 可管理的部门id列表
         /// </summary>
-        [JsonProperty("deptId")]
-        public string DeptId { get; set; }
+        [JsonProperty("hasMore")]
+        public int[] DeptIds { get; set; }
     }
 }

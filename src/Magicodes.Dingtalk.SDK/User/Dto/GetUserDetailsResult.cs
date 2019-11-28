@@ -125,7 +125,7 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
         public bool Active { get; set; }
 
         /// <summary>
-        /// 是否已经激活，true表示已激活，false表示未激活
+        /// 是否是企业的管理员，true表示是，false表示不是
         /// </summary>
         [JsonProperty("isAdmin")]
         public bool IsAdmin { get; set; }

@@ -12,12 +12,6 @@ namespace Magicodes.Dingtalk.SDK.User.Dto
     public class GetUserDetailsInput
     {
         /// <summary>
-        /// 接口凭证 
-        /// </summary>
-        [JsonProperty("access_token")]
-        public string Access_Token { get; set; }
-
-        /// <summary>
         /// 员工id
         /// </summary>
         [StringLength(64, MinimumLength = 1)]
