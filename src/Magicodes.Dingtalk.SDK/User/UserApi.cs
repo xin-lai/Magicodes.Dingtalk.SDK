@@ -29,6 +29,11 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <returns></returns>
         public async Task<CreateUserResult> Create(CreateOrEditUsersInput input)
         {
+            if (input.HiredDateTime != null)
+            {
+                // 把入职时间转换为时间戳
+                input.HiredDate = Helper.DateTimeHelper.ConvertToTimeStamp(Convert.ToDateTime(input.HiredDateTime));
+            }
             return await Post<CreateUserResult>(
                "user/create?access_token={ACCESS_TOKEN}", new
                {
@@ -46,7 +51,8 @@ namespace Magicodes.Dingtalk.SDK.User
                    jobnumber = input.Jobnumber,
                    isHide = input.isHide,
                    isSenior = input.isSenior,
-                   extattr = input.Extattr
+                   extattr = input.Extattr,
+                   hiredDate = input.HiredDate
                });
         }
 
@@ -57,6 +63,11 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <returns></returns>
         public async Task<ApiResultBase> Update(CreateOrEditUsersInput input)
         {
+            if (input.HiredDateTime != null)
+            {
+                // 把入职时间转换为时间戳
+                input.HiredDate = Helper.DateTimeHelper.ConvertToTimeStamp(Convert.ToDateTime(input.HiredDateTime));
+            }
             return await Post<ApiResultBase>(
                "user/update?access_token={ACCESS_TOKEN}", new
                {
@@ -73,7 +84,8 @@ namespace Magicodes.Dingtalk.SDK.User
                    jobnumber = input.Jobnumber,
                    isHide = input.isHide,
                    isSenior = input.isSenior,
-                   extattr = input.Extattr
+                   extattr = input.Extattr,
+                   hiredDate = input.HiredDate
                });
         }
 
