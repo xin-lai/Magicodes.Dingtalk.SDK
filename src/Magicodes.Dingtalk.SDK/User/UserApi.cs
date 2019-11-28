@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Magicodes.Dingtalk.SDK.User
 {
     /// <summary>
-    /// 员工API
+    /// 用户管理API
     /// </summary>
     public class UserApi : ApiBase
     {
@@ -25,12 +25,12 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <summary>
         /// 创建员工
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">创建员工</param>
         /// <returns></returns>
         public async Task<CreateUserResult> Create(CreateOrEditUsersInput input)
         {
             return await Post<CreateUserResult>(
-               "user/create", new
+               "user/create?access_token={ACCESS_TOKEN}", new
                {
                    userid = input.UserId,
                    name = input.Name,
@@ -53,12 +53,12 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <summary>
         /// 更新员工
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">更新员工</param>
         /// <returns></returns>
         public async Task<ApiResultBase> Update(CreateOrEditUsersInput input)
         {
             return await Post<ApiResultBase>(
-               "user/update", new
+               "user/update?access_token={ACCESS_TOKEN}", new
                {
                    userid = input.UserId,
                    name = input.Name,
@@ -80,46 +80,47 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <summary>
         /// 删除员工
         /// </summary>
-        /// <param name="userid"></param>
+        /// <param name="userid">员工id</param>
         /// <returns></returns>
         public async Task<ApiResultBase> Delete(string userid)
         {
-            return await Get<ApiResultBase>("user/delete?userid=" + userid);
+            return await Get<ApiResultBase>("user/delete?access_token={ACCESS_TOKEN}&userid=" + userid);
         }
 
         /// <summary>
         /// 获取员工详情
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="userId">员工id</param>
+        /// <param name="lang">通讯录语言</param>
         /// <returns></returns>
-        public async Task<GetUserDetailsResult> GetUserDetails(GetUserDetailsInput input)
+        public async Task<GetUserDetailsResult> GetUserDetails(string userId, string lang = "zh_CN")
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string>
             {
-                { "userid", input.UserId },
-                { "lang", input.Language }
+                { "userid", userId },
+                { "lang", lang }
             };
-            return await Get<GetUserDetailsResult>("user/get", dictionary);
+            return await Get<GetUserDetailsResult>("user/get?access_token={ACCESS_TOKEN}", queryParameters);
         }
 
         /// <summary>
         /// 获取部门用户userid列表
         /// </summary>
-        /// <param name="DeptId">部门id</param>
+        /// <param name="deptId">部门id</param>
         /// <returns></returns>
-        public async Task<GetUserDetailsResult> GetDeptMemberUserIds(string DeptId)
+        public async Task<GetUserDetailsResult> GetDeptMemberUserIds(string deptId)
         {
-            return await Get<GetUserDetailsResult>("user/getDeptMember?deptId=" + DeptId);
+            return await Get<GetUserDetailsResult>("user/getDeptMember?access_token={ACCESS_TOKEN}&deptId=" + deptId);
         }
 
         /// <summary>
         /// 获取部门用户
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">获取部门用户</param>
         /// <returns></returns>
         public async Task<GetDeptMemberUsersResult> GetDeptMemberUsers(GetDeptMemberUsersInput input)
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string>
             {
                 {"department_id", input.DepartmentId.ToString()},
                 { "lang", input.Language },
@@ -127,20 +128,20 @@ namespace Magicodes.Dingtalk.SDK.User
             };
             if (input.Offset.HasValue && input.Size.HasValue)
             {
-                dictionary.Add("offset", input.Offset?.ToString());
-                dictionary.Add("size", input.Size?.ToString());
+                queryParameters.Add("offset", input.Offset?.ToString());
+                queryParameters.Add("size", input.Size?.ToString());
             }
-            return await Get<GetDeptMemberUsersResult>("user/simplelist", dictionary);
+            return await Get<GetDeptMemberUsersResult>("user/simplelist?access_token={ACCESS_TOKEN}", queryParameters);
         }
 
         /// <summary>
         /// 获取部门用户详情
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">获取部门用户详情</param>
         /// <returns></returns>
         public async Task<GetDeptMemberUserDetailsResult> GetDeptMemberUserDetails(GetDeptMemberUserDetailsInput input)
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string>
             {
                 { "department_id", input.DepartmentId.ToString() },
                 { "lang", input.Language },
@@ -148,7 +149,7 @@ namespace Magicodes.Dingtalk.SDK.User
                 { "size", input.Size.ToString() },
                 { "order", input.Order }
             };
-            return await Get<GetDeptMemberUserDetailsResult>("user/listbypage", dictionary);
+            return await Get<GetDeptMemberUserDetailsResult>("user/listbypage", queryParameters);
         }
 
         /// <summary>
@@ -157,57 +158,57 @@ namespace Magicodes.Dingtalk.SDK.User
         /// <returns></returns>
         public async Task<GetAdminsListResult> GetAdminsList()
         {
-            return await Get<GetAdminsListResult>("user/get_admin");
+            return await Get<GetAdminsListResult>("user/get_admin?access_token={ACCESS_TOKEN}");
         }
 
         /// <summary>
         /// 获取管理员通讯录权限范围
         /// </summary>
-        /// <param name="UserId"></param>
+        /// <param name="userId">员工id</param>
         /// <returns></returns>
-        public async Task<GetAdminScopeResult> GetAdminScope(string UserId)
+        public async Task<GetAdminScopeResult> GetAdminScope(string userId)
         {
-            return await Get<GetAdminScopeResult>("topapi/user/get_admin_scope?userid=" + UserId);
+            return await Get<GetAdminScopeResult>("topapi/user/get_admin_scope?access_token={ACCESS_TOKEN}&userid=" + userId);
         }
 
         /// <summary>
         /// 根据unionid获取userid
         /// </summary>
-        /// <param name="UnionId"></param>
+        /// <param name="unionId">员工在当前开发者企业账号范围内的唯一标识，系统生成，固定值，不会改变</param>
         /// <returns></returns>
-        public async Task<GetUserIdByUnionidResult> GetUserIdByUnionid(string UnionId)
+        public async Task<GetUserIdByUnionidResult> GetUserIdByUnionid(string unionId)
         {
-            return await Get<GetUserIdByUnionidResult>("getUseridByUnionid?unionid=xxx" + UnionId);
+            return await Get<GetUserIdByUnionidResult>("getUseridByUnionid?access_token={ACCESS_TOKEN}&unionid=xxx" + unionId);
         }
 
         /// <summary>
         /// 根据手机号获取userid
         /// </summary>
-        /// <param name="Mobile"></param>
+        /// <param name="mobile">手机号码</param>
         /// <returns></returns>
-        public async Task<GetUserIdByMobileResult> GetUserIdByMobile(string Mobile)
+        public async Task<GetUserIdByMobileResult> GetUserIdByMobile(string mobile)
         {
-            return await Get<GetUserIdByMobileResult>("user/get_by_mobile?mobile=" + Mobile);
+            return await Get<GetUserIdByMobileResult>("user/get_by_mobile?access_token={ACCESS_TOKEN}&mobile=" + mobile);
         }
 
         /// <summary>
         /// 获取企业员工人数
         /// </summary>
-        /// <param name="OnlyActive"></param>
+        /// <param name="onlyActive">0：包含未激活钉钉的人员数量,1：不包含未激活钉钉的人员数量</param>
         /// <returns></returns>
-        public async Task<GetOrgUserCountResult> GetOrgUserCount(int OnlyActive)
+        public async Task<GetOrgUserCountResult> GetOrgUserCount(int onlyActive)
         {
-            return await Get<GetOrgUserCountResult>("user/get_org_user_count?onlyActive=" + OnlyActive);
+            return await Get<GetOrgUserCountResult>("user/get_org_user_count?access_token={ACCESS_TOKEN}&onlyActive=" + onlyActive);
         }
 
         /// <summary>
         /// 未登录钉钉的员工列表
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">未登录钉钉的员工列表</param>
         /// <returns></returns>
         public async Task<GetInactiveUsersListResult> GetInactiveUsersList(GetInactiveUsersListInput input)
         {
-            return await Post<GetInactiveUsersListResult>("topapi/inactive/user/get", new
+            return await Post<GetInactiveUsersListResult>("topapi/inactive/user/get?access_token={ACCESS_TOKEN}", new
             {
                 query_date = input.QueryDate,
                 offset = input.Offset,
