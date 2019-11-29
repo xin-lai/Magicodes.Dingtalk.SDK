@@ -2,7 +2,6 @@
 using SimpleJson;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Magicodes.Dingtalk.SDK.User.Dto
 {

@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Magicodes.Dingtalk.SDK.User
@@ -13,7 +12,7 @@ namespace Magicodes.Dingtalk.SDK.User
     public class UserApi : ApiBase
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name=""></param>
         /// <param name="logger"></param>

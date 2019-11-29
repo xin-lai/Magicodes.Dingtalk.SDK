@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Magicodes.Dingtalk.SDK.Extcontact.Dto
 {
@@ -14,6 +11,6 @@ namespace Magicodes.Dingtalk.SDK.Extcontact.Dto
         /// 新外部联系人的userid
         /// </summary>
         [JsonProperty("userid")]
-        public string  UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

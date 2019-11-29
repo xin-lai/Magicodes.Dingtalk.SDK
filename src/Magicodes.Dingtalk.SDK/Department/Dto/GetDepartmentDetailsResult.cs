@@ -1,14 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Magicodes.Dingtalk.SDK.Department.Dto
 {
     /// <summary>
     /// 获取部门详情返回结果
     /// </summary>
-    public class GetDepartmentDetailsResult:ApiResultBase
+    public class GetDepartmentDetailsResult : ApiResultBase
     {
         /// <summary>
         /// 部门id
@@ -33,7 +30,6 @@ namespace Magicodes.Dingtalk.SDK.Department.Dto
         /// </summary>
         [JsonProperty("order")]
         public string Order { get; set; }
-
 
         /// <summary>
         /// 是否同步创建一个关联此部门的企业群，true表示是，false表示不是
@@ -77,7 +73,6 @@ namespace Magicodes.Dingtalk.SDK.Department.Dto
         [JsonProperty("outerPermitDepts")]
         public string OuterPermitDepts { get; set; }
 
-
         /// <summary>
         /// 本部门的员工仅可见员工自己为true时，可以配置额外可见人员，值为userid组成的的字符串，使用“\|”符号进行分割
         /// </summary>
@@ -101,7 +96,6 @@ namespace Magicodes.Dingtalk.SDK.Department.Dto
         /// </summary>
         [JsonProperty("sourceIdentifier")]
         public string SourceIdentifier { get; set; }
-
 
         /// <summary>
         /// 部门群是否包含子部门

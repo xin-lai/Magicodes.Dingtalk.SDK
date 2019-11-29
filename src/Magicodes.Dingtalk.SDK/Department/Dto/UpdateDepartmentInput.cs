@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Magicodes.Dingtalk.SDK.Department.Dto
 {
@@ -108,7 +105,6 @@ namespace Magicodes.Dingtalk.SDK.Department.Dto
         /// </summary>
         [JsonProperty("outerPermitDepts")]
         public string OuterPermitDepts { get; set; }
-
 
         /// <summary>
         /// outerDept为true时，可以配置额外可见人员，值为userid组成的的字符串，使用“\|”符号进行分割。总数不能超过200

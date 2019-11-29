@@ -1,8 +1,6 @@
 ﻿using Magicodes.Dingtalk.SDK.Extcontact.Dto;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Magicodes.Dingtalk.SDK.Extcontact
@@ -13,7 +11,7 @@ namespace Magicodes.Dingtalk.SDK.Extcontact
     public class ExtcontactApi : ApiBase
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="serviceProvider"></param>
@@ -27,7 +25,7 @@ namespace Magicodes.Dingtalk.SDK.Extcontact
         /// <param name="size">分页大小，最大100</param>
         /// <param name="offset">偏移位置</param>
         /// <returns></returns>
-        public async Task<GetExtcontactsListLableGroupsResult> GetExtcontactsListLableGroups(int size,int offset)
+        public async Task<GetExtcontactsListLableGroupsResult> GetExtcontactsListLableGroups(int size, int offset)
         {
             return await Post<GetExtcontactsListLableGroupsResult>("topapi/extcontact/listlabelgroups?access_token={ACCESS_TOKEN}", new
             {
@@ -44,7 +42,8 @@ namespace Magicodes.Dingtalk.SDK.Extcontact
         /// <returns></returns>
         public async Task<GetExtcontactsListResult> GetExtcontactsList(int size, int offset)
         {
-            return await Post<GetExtcontactsListResult>("topapi/extcontact/list?access_token={ACCESS_TOKEN}", new {
+            return await Post<GetExtcontactsListResult>("topapi/extcontact/list?access_token={ACCESS_TOKEN}", new
+            {
                 size = size,
                 offset = offset
             });
