@@ -1,4 +1,4 @@
-﻿using Magicodes.Dingtalk.SDK.User.Dto;
+﻿using Magicodes.Dingtalk.SDK.Media.Dto;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
