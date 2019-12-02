@@ -32,5 +32,34 @@ namespace Magicodes.Dingtalk.SDK.SmartWork
                     size
                 });
         }
+
+        /// <summary>
+        ///  获取员工花名册字段信息
+        /// </summary>
+        /// <param name="userIdList">员工userid列表，最大列表长度：20</param>
+        /// <param name="findFilterList">需要获取的花名册字段列表，最大列表长度：20。具体业务字段的code参见附录（大小写敏感）。不传入该参数时，企业可获取所有字段信息。</param>
+        /// <returns></returns>
+        public async Task<GetHrmListInfoResult> GetHrmListInfo(string userIdList,string findFilterList) {
+            return await Post<GetHrmListInfoResult>("topapi/smartwork/hrm/employee/list?access_token={ACCESS_TOKEN}", new
+            {
+                userid_list = userIdList,
+                field_filter_list = findFilterList
+            });
+        }
+
+        /// <summary>
+        /// 查询企业待入职员工列表
+        /// </summary>
+        /// <param name="offset">分页游标，从0开始</param>
+        /// <param name="size">分页大小，最大50</param>
+        /// <returns></returns>
+        public async Task<QueryPreentryResult> QueryPreentry(int offset,int size)
+        {
+            return await Post<QueryPreentryResult>("topapi/smartwork/hrm/employee/querypreentry?access_token={ACCESS_TOKEN}", new
+            {
+                offset = offset,
+                size = size
+            });
+        }
     }
 }
